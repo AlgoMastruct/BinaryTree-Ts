@@ -12,61 +12,59 @@ export default class Tree {
     this.root.right.right = new TreeNode(6);
   }
 
-  public get isEmpty(): boolean {
+  public isEmpty(): boolean {
     return this.root === null;
   }
 
   public inorder(): void {
-    this._inorder(this.root!);
+    this._inorder(this.root);
   }
 
-  private _inorder(p: TreeNode): void {
-    if (p !== null) {
-      this._inorder(p.left!);
-      console.log(p.data + " "); // visit
-      this._inorder(p.right!);
+  private _inorder(p: TreeNode | null): void {
+    if (p) {
+      this._inorder(p.left);
+      console.log(p.data);
+      this._inorder(p.right);
     }
-  }
-
-  private static visit(p: TreeNode): void {
-    console.log(p.data + " ");
   }
 
   public preorder(): void {
-    this._preorder(this.root!);
+    this._preorder(this.root);
   }
 
-  private _preorder(p: TreeNode): void {
-    if (p !== null) {
-      console.log(p.data + " "); // visit
-      this._preorder(p.left!);
-      this._preorder(p.right!);
+  private _preorder(p: TreeNode | null): void {
+    if (p) {
+      console.log(p.data);
+      this._preorder(p.left);
+      this._preorder(p.right);
     }
   }
+
   public postorder(): void {
-    this._postorder(this.root!);
+    this._postorder(this.root);
   }
 
-  private _postorder(p: TreeNode): void {
-    if (p !== null) {
-      this._postorder(p.left!);
-      this._postorder(p.right!);
-      console.log(p.data + " "); // visit
+  private _postorder(p: TreeNode | null): void {
+    if (p) {
+      this._postorder(p.left);
+      this._postorder(p.right);
+      console.log(p.data);
     }
   }
 
   public nonRecursiveInorder(): void {
-    let s: TreeNode[] = [];
-    let p: TreeNode = this.root!;
-    while (true) {
-      while (p !== null) {
-        s.push(p);
-        p = p.left!;
+    let stack: TreeNode[] = [];
+    let current: TreeNode | null = this.root;
+
+    while (current || stack.length) {
+      while (current) {
+        stack.push(current);
+        current = current.left;
       }
-      if (!s.length) return;
-      p = s.pop()!;
-      console.log(p.data + " ");
-      p = p.right!;
+
+      current = stack.pop()!;
+      console.log(current.data);
+      current = current.right;
     }
   }
 
@@ -76,7 +74,7 @@ export default class Tree {
 
     while (current || stack.length) {
       while (current) {
-        console.log(current.data + " ");
+        console.log(current.data);
         stack.push(current);
         current = current.left;
       }
@@ -90,7 +88,7 @@ export default class Tree {
     let current: TreeNode | null = this.root;
 
     while (current) {
-      console.log(current.data + " ");
+      console.log(current.data);
       if (current.left) {
         queue.unshift(current.left);
       }
