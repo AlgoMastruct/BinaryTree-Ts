@@ -72,14 +72,15 @@ export default class Tree {
     let stack: TreeNode[] = [];
     let current: TreeNode | null = this.root;
 
-    while (current || stack.length) {
-      while (current) {
+    while (stack.length || current) {
+      if (current) {
         console.log(current.data);
         stack.push(current);
         current = current.left;
+      } else {
+        current = stack.pop()!;
+        current = current.right;
       }
-      current = stack.pop()!;
-      current = current.right;
     }
   }
 
@@ -89,13 +90,10 @@ export default class Tree {
 
     while (current) {
       console.log(current.data);
-      if (current.left) {
-        queue.unshift(current.left);
-      }
-      if (current.right) {
-        queue.unshift(current.right);
-      }
-      if (!queue.length) return;
+
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+
       current = queue.shift()!;
     }
   }
