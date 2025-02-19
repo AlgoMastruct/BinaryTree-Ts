@@ -35,3 +35,6 @@ console.log(t.isComplete());
 
 console.log("\n is balanace tree:");
 console.log(t.isBalanced());
+
+console.log("\n is strict tree:");
+console.log(t.isStrict());
