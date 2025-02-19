@@ -32,3 +32,6 @@ console.log(t.height());
 
 console.log("\n is complete tree:");
 console.log(t.isComplete());
+
+console.log("\n is balanace tree:");
+console.log(t.isBalanced());
