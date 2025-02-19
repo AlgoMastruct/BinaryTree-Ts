@@ -28,4 +28,7 @@ console.log("\nnumber of nodes:");
 console.log(t.numberOfNodes());
 
 console.log("\nthe height of tree:");
-console.log(t.height);
+console.log(t.height());
+
+console.log("\n is complete tree:");
+console.log(t.isComplete());
